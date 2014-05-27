@@ -122,6 +122,11 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   exit 1
 fi
 
+# clear the .sbt cache
+echo "-----> Dropping the ivy2 cache from the slug"
+rm -rf $SBT_USER_HOME/.ivy2
+
+
 PROFILE_PATH="$BUILD_DIR/.profile.d/scala.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
@@ -131,10 +136,6 @@ mkdir -p $CACHE_DIR
 for DIR in $CACHED_DIRS; do
   cache_copy $DIR $BUILD_DIR $CACHE_DIR
 done
-
-# clear the .sbt cache
-echo "-----> Dropping the ivy2 cache from the slug"
-rm -rf $SBT_USER_HOME/.ivy2
 
 
 # drop useless directories from slug for play only
