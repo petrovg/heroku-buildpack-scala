@@ -132,6 +132,11 @@ for DIR in $CACHED_DIRS; do
   cache_copy $DIR $BUILD_DIR $CACHE_DIR
 done
 
+# clear the .sbt cache
+echo "-----> Dropping the ivy2 cache from the slug"
+rm -rf $SBT_USER_HOME/.ivy2
+
+
 # drop useless directories from slug for play only
 if is_play $BUILD_DIR ; then
   if [ -d $SBT_USER_HOME/.ivy2 ]; then
