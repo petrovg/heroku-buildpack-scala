@@ -121,6 +121,12 @@ echo "SBT_USER_HOME_ABSOLUTE=$SBT_USER_HOME_ABSOLUTE"
 echo "SBT_BINDIR=$SBT_BINDIR"
 echo "SBT_JAR=$SBT_JAR"
 echo "SBT_TASKS=$SBT_TASKS"
+
+head -19 "$SBT_BINDIR"/sbt.boot.properties > "$SBT_BINDIR"/sbt.boot.properties__
+cp "$SBT_BINDIR"/sbt.boot.properties "$SBT_BINDIR"/sbt.boot.properties.BAK
+cp "$SBT_BINDIR"/sbt.boot.properties__ "$SBT_BINDIR"/sbt.boot.properties
+echo " level: debug" >> "$SBT_BINDIR"/sbt.boot.properties
+
 echo "$SBT_BINDIR"/sbt.boot.properties
 cat "$SBT_BINDIR/sbt.boot.properties"
 echo ================================
